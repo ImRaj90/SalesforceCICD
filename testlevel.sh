@@ -11,8 +11,16 @@ fi
 echo "echoing the testclass content"
 echo "=========================="
 cat testclass.txt
-count=$(wc -w testclass.txt)
 echo "number of characters:"
+count=$(wc -l testclass.txt)
+echo $count
+echo "----------------------"
+echo "number of words:"
+count=$(wc -w testclass.txt)
+echo $count
+echo "----------------------"
+echo "number of characters:"
+count=$(wc -m testclass.txt)
 echo $count
 ls -ltr testfile.txt
 chmod +x testfile.txt  
