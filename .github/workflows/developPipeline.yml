@@ -32,6 +32,6 @@ jobs:
            ./sfdx-cli/install
            sfdx --version
            echo $SALESFORCE_CONSUMER_KEY > server.key      
-           sfdx force:auth:jwt:grant --clientid ${{ secrets.CONSUMER_KEY }} --username ${{ secrets.USERNAME }} --jwtkeyfile server.key --setdefaultdevhubusername -a SalesforceScratchOrg --instanceurl ${{ secrets.INSTANCE_URL }}
+           sfdx auth:jwt:grant --clientid ${{ secrets.CONSUMER_KEY }} --username ${{ secrets.USERNAME }} --jwtkeyfile server.key --setdefaultdevhubusername -a SalesforceScratchOrg --instanceurl ${{ secrets.INSTANCE_URL }}
         env:
            SALESFORCE_CONSUMER_KEY: ${{ secrets.SALESFORCE_JWT_SECRET_KEY }}
