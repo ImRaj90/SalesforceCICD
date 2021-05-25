@@ -34,6 +34,6 @@ jobs:
       - name: Authenticating the salesforce org    
         run: |
            echo $SALESFORCE_CONSUMER_KEY > server.key      
-           sfdx force:auth:jwt:grant --clientid ${{ secrets.CONSUMER_KEY }} --username ${{ secrets.USERNAME }} --jwtkeyfile server.key --setdefaultdevhubusername -a SalesforceScratchOrg --instanceurl ${{ INSTANCE_URL }}
+           sfdx force:auth:jwt:grant --clientid ${{ secrets.CONSUMER_KEY }} --username ${{ secrets.USERNAME }} --jwtkeyfile server.key --setdefaultdevhubusername -a SalesforceScratchOrg --instanceurl ${{ secrets.INSTANCE_URL }}
         env:
            SALESFORCE_CONSUMER_KEY: ${{ secrets.SALESFORCE_JWT_SECRET_KEY }}
