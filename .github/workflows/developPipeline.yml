@@ -1,0 +1,39 @@
+# This is a basic workflow to help you get started with Actions
+
+name: MainDevelopmentPipeline
+
+# Controls when the action will run. 
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      MANUAL_COMMIT_ID:
+        description: Mnaul commit MANUAL_COMMIT_ID
+        required: false
+
+# A workflow run is made up of one or more jobs that can run sequentially or in paralle
+
+jobs:
+  runtestscripts:
+    runs-on: ubuntu-latest
+    # Check install
+    steps:
+    
+    # Steps represent a sequence of tasks that will be executed as part of the job
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it    
+    
+      - uses: actions/checkout@v2
+         
+      - name: Install Salesforce CLI in ubuntu
+        run: | 
+           wget https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
+           mkdir ~/sfdx
+           tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1
+           export PATH=~/sfdx/bin:$PATH
+           PATH=~/sfdx/bin:$PATH
+      - name: Authenticating the salesforce org    
+      - run: |
+           echo $SALESFORCE_CONSUMER_KEY > server.key      
+           sfdx force:auth:jwt:grant --clientid ${{ secrets.CONSUMER_KEY }} --username ${{ USERNAME }} --jwtkeyfile server.key --setdefaultdevhubusername -a SalesforceScratchOrg --instanceurl ${{ INSTANCE_URL }}
+        env:
+           SALESFORCE_CONSUMER_KEY: ${{ secrets.SALESFORCE_JWT_SECRET_KEY }}
