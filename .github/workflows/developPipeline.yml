@@ -31,8 +31,6 @@ jobs:
            tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1
            export PATH=~/sfdx/bin:$PATH
            PATH=~/sfdx/bin:$PATH
-      - name: Authenticating the salesforce org    
-        run: |
            echo $SALESFORCE_CONSUMER_KEY > server.key      
            sfdx force:auth:jwt:grant --clientid ${{ secrets.CONSUMER_KEY }} --username ${{ secrets.USERNAME }} --jwtkeyfile server.key --setdefaultdevhubusername -a SalesforceScratchOrg --instanceurl ${{ secrets.INSTANCE_URL }}
         env:
