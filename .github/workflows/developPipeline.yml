@@ -48,4 +48,4 @@ jobs:
            echo "$arr[@]"
            sdfx force:source:deploy -c -p force-app -u SalesforceScratchOrg -r $arr[@]
 
-           
+          
