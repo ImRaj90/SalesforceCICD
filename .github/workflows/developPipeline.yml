@@ -26,9 +26,10 @@ jobs:
          
       - name: Install Salesforce CLI in ubuntu
         run: | 
-           wget https://developer.salesforce.com/media/salesforce-cli/sfdx/channels/stable/sfdx-linux-x64.tar.xz
-           mkdir ~/sfdx
-           tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1
+           wget https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
+           mkdir sfdx-cli
+           tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
+           ./sfdx-cli/install
            export PATH=~/sfdx/bin:$PATH
            PATH=~/sfdx/bin:$PATH
            echo $SALESFORCE_CONSUMER_KEY > server.key      
