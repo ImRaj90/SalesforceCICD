@@ -30,8 +30,9 @@ jobs:
            mkdir sfdx-cli
            tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
            ./sfdx-cli/install
+           export PATH=~/sfdx/bin:$PATH           
            sfdx --version
            echo $SALESFORCE_CONSUMER_KEY > server.key      
-           sfdx auth:jwt:grant --clientid ${{ secrets.CONSUMER_KEY }} --username ${{ secrets.USERNAME }} --jwtkeyfile server.key --setdefaultdevhubusername -a SalesforceScratchOrg --instanceurl ${{ secrets.INSTANCE_URL }}
+       #    sfdx auth:jwt:grant --clientid ${{ secrets.CONSUMER_KEY }} --username ${{ secrets.USERNAME }} --jwtkeyfile server.key --setdefaultdevhubusername -a SalesforceScratchOrg --instanceurl ${{ secrets.INSTANCE_URL }}
         env:
            SALESFORCE_CONSUMER_KEY: ${{ secrets.SALESFORCE_JWT_SECRET_KEY }}
