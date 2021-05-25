@@ -32,7 +32,7 @@ jobs:
            export PATH=~/sfdx/bin:$PATH
            PATH=~/sfdx/bin:$PATH
       - name: Authenticating the salesforce org    
-      - run: |
+        run: |
            echo $SALESFORCE_CONSUMER_KEY > server.key      
            sfdx force:auth:jwt:grant --clientid ${{ secrets.CONSUMER_KEY }} --username ${{ USERNAME }} --jwtkeyfile server.key --setdefaultdevhubusername -a SalesforceScratchOrg --instanceurl ${{ INSTANCE_URL }}
         env:
