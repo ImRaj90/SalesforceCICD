@@ -34,18 +34,17 @@ jobs:
            echo "authicatting to scratch org"
            echo "${SALESFORCE_CONSUMER_KEY}" > server.key     
            sfdx auth:jwt:grant --clientid ${{ secrets.CONSUMER_KEY }} --username ${{ secrets.USERNAME }} --jwtkeyfile server.key --setdefaultdevhubusername -a SalesforceScratchOrg --instanceurl ${{ secrets.INSTANCE_URL }}
+
+           ls -ltr
+           declare -a arr
+           arr=(helloworld)
+           echo ${arr[@]}
+           echo "${arr[@]}"
+           sdfx force:source:deploy -c -p force-app -u SalesforceScratchOrg -r $arr[@]
      #     sfdx auth:jwt:grant --clientid 3MVG9e2mBbZnmM6mhRc4FSSF1DZEpqOwQFiqShNuG.pAABT136EBalqJant7fGWzehyqwFIgMmav0.PdlvGCQ --username test-2mmvrtm5q2ay@example.com --jwtkeyfile server.key --setdefaultdevhubusername -a SalesforceScratchOrg --instanceurl https://test.salesforce.com 
       #    echo 'y' | sfdx plugins:install sfpowerkit
       #    echo 'y' | sfdx plugins:install @dxatscale/sfpowerscripts
         env:
            SALESFORCE_CONSUMER_KEY: ${{ secrets.SALESFORCE_JWT_SECRET_KEY }}
-      - name: Delpy to production
-        run: | 
-           ls -ltr
-           declare -a arr
-           arr=(hello)
-           echo $arr[@]
-           echo "$arr[@]"
-           sdfx force:source:deploy -c -p force-app -u SalesforceScratchOrg -r $arr[@]
 
           
