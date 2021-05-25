@@ -29,9 +29,9 @@ jobs:
            wget https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
            mkdir sfdx-cli
            tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
+           sudo su -
            ./sfdx-cli/install
            export PATH=~/sfdx/bin:$PATH
-           PATH=~/sfdx/bin:$PATH
            echo $SALESFORCE_CONSUMER_KEY > server.key      
            sfdx force:auth:jwt:grant --clientid ${{ secrets.CONSUMER_KEY }} --username ${{ secrets.USERNAME }} --jwtkeyfile server.key --setdefaultdevhubusername -a SalesforceScratchOrg --instanceurl ${{ secrets.INSTANCE_URL }}
         env:
