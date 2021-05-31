@@ -40,6 +40,9 @@ jobs:
                echo ${word}
            done
            echo ${word}
+           while read -r line; do
+             printf '%s\n' "$line"
+           done < Book1.csv        
            sfdx force:source:deploy -c -p force-app -u SalesforceScratchOrg
            sfdx force:source:deploy -c -p force-app -l RunSpecifiedTests -r ${cstring} -u SalesforceScratchOrg 
      #     sfdx auth:jwt:grant --clientid 3MVG9e2mBbZnmM6mhRc4FSSF1DZEpqOwQFiqShNuG.pAABT136EBalqJant7fGWzehyqwFIgMmav0.PdlvGCQ --username test-2mmvrtm5q2ay@example.com --jwtkeyfile server.key --setdefaultdevhubusername -a SalesforceScratchOrg --instanceurl https://test.salesforce.com 
