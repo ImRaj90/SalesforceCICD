@@ -34,7 +34,7 @@ jobs:
            echo "authicatting to scratch org"
            echo "${SALESFORCE_CONSUMER_KEY}" > server.key     
            sfdx auth:jwt:grant --clientid ${{ secrets.CONSUMER_KEY }} --username ${{ secrets.USERNAME }} --jwtkeyfile server.key --setdefaultdevhubusername -a SalesforceScratchOrg --instanceurl ${{ secrets.INSTANCE_URL }}
-           cat testclasses | tr ',' '\n' | while read word; do
+           cat testclasses | sed -n 1'p' | tr ',' '\n' | while read word; do
                echo $word
            done
            value=`cat testclasses`
