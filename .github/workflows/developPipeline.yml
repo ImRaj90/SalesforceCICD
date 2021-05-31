@@ -36,7 +36,7 @@ jobs:
            sfdx auth:jwt:grant --clientid ${{ secrets.CONSUMER_KEY }} --username ${{ secrets.USERNAME }} --jwtkeyfile server.key --setdefaultdevhubusername -a SalesforceScratchOrg --instanceurl ${{ secrets.INSTANCE_URL }}
            cstring=$(paste -sd, testclasses.xlsx)
            echo ${cstring}
-           csv_string=$(paste -sd, Book1.xlsx)
+           csv_string=$(awk 'BEGIN{FS=",";OFS=","}{$1=""; print}', Book1.xlsx) 
            echo ${csv_string}
            sfdx force:source:deploy -c -p force-app -u SalesforceScratchOrg
            sfdx force:source:deploy -c -p force-app -l RunSpecifiedTests -r ${csv_string} -u SalesforceScratchOrg 
