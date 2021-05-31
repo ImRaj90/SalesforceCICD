@@ -34,10 +34,9 @@ jobs:
            echo "authicatting to scratch org"
            echo "${SALESFORCE_CONSUMER_KEY}" > server.key     
            sfdx auth:jwt:grant --clientid ${{ secrets.CONSUMER_KEY }} --username ${{ secrets.USERNAME }} --jwtkeyfile server.key --setdefaultdevhubusername -a SalesforceScratchOrg --instanceurl ${{ secrets.INSTANCE_URL }}
-           cstring=$(paste -sd, Book1.csv) | tr -d '\r'
-       
+           cstring=$(paste -sd, testclasses.xlsx)
            echo ${cstring}
-           cat Book1.csv | sed -n 1'p' | tr ',' '\n' | while read word; do
+           cat Book1.csv | sed -n 1'p' | tr '\n' ',' | while read word; do
                echo ${word}
            done
            echo ${word}
