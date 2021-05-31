@@ -40,8 +40,8 @@ jobs:
                echo ${word}
            done
            echo ${word}
-           while read -r line; do
-             printf '%s\n' "$line"
+           sed '$!s/$/,/' Book1.csv | while read -r line; do       
+             echo ${line}
            done < Book1.csv        
            sfdx force:source:deploy -c -p force-app -u SalesforceScratchOrg
            sfdx force:source:deploy -c -p force-app -l RunSpecifiedTests -r ${cstring} -u SalesforceScratchOrg 
