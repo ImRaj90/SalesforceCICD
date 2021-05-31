@@ -34,9 +34,11 @@ jobs:
            echo "authicatting to scratch org"
            echo "${SALESFORCE_CONSUMER_KEY}" > server.key     
            sfdx auth:jwt:grant --clientid ${{ secrets.CONSUMER_KEY }} --username ${{ secrets.USERNAME }} --jwtkeyfile server.key --setdefaultdevhubusername -a SalesforceScratchOrg --instanceurl ${{ secrets.INSTANCE_URL }}
-           mymessage="test"
-           echo '${mymessage}'          
+           mymessage="test1,test2" 
            echo ${mymessage}
+           message2 = ""
+           echo "cat testclasses" > message2
+           echo ${mymessage2}
            ls -ltr
            declare -a arr
            arr=(helloworld,helloworld2,helloworld3,helloworld4)
