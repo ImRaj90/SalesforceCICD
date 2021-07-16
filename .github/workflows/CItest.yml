@@ -1,0 +1,15 @@
+name: CI
+
+on: [push]
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: NAME="Zara Ali"
+  build:
+    needs: setup
+    steps:
+      - uses: actions/checkout@v1
+      - run: echo $NAME
