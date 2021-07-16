@@ -10,6 +10,7 @@ jobs:
       - run: NAME="Zara Ali"
   build:
     needs: setup
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - run: echo $NAME
