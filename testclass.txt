@@ -1,4 +1,1 @@
-testclass
-testclass
-testclass
-testclass
+testclasss contents
