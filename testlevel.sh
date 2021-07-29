@@ -12,7 +12,7 @@ fi
 echo "echoing the testclass content"
 echo "=========================="
 cat testclass.txt
-count = $(wc -w testclass.txt)
+count=$(wc -w testclass.txt)
 echo "number of characters:"
 echo $count
 ls -ltr testfile.txt
@@ -28,6 +28,6 @@ fi
 echo "echoing the file content"
 echo "=========================="
 cat testfile.txt
-count = $(wc -w testfile.txt)
+count=$(wc -w testfile.txt)
 echo "number of characters is:"
 echo $count
