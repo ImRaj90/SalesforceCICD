@@ -10,9 +10,10 @@ else
 fi
 
 echo "echoing the testclass content"
+echo "=========================="
 cat testclass.txt
-var count = $(wc -w testclass.txt)
-echo "number of characters"
+count = $(wc -w testclass.txt)
+echo "number of characters:"
 echo $count
 ls -ltr testfile.txt
 chmod +x testfile.txt  
@@ -25,7 +26,8 @@ else
 
 fi
 echo "echoing the file content"
+echo "=========================="
 cat testfile.txt
-var count = $(wc -w testfile.txt)
-echo "number of characters"
+count = $(wc -w testfile.txt)
+echo "number of characters is:"
 echo $count
