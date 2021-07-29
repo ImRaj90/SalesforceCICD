@@ -1,6 +1,5 @@
 #!/bin/bash
 ls -ltr testclass.txt
-chmod +x testclass.txt  
 if [ -s testclass.txt ]
 then
         echo "testclass is not emtpy"
