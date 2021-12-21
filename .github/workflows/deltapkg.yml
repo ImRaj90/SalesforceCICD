@@ -23,7 +23,7 @@ jobs:
           echo 'y' | sfdx plugins:install sfdx-git-delta
           sfdx sgd:source:delta --to "HEAD" --from ${{github.event.inputs.manual_commit_id}} --output "OutputFolder"
           tree OutputFolder
-      - name: deltapkg
+      - name: deltapkg these
         run: |
           sfdx sgd:source:delta --to "HEAD" --from ${{github.event.inputs.manual_commit_id}} --output "OutputFolder"
           tree OutputFolder
