@@ -1,3 +1,4 @@
 seven
-766777
-6wew3454
+76666666666
+isfgdfg
+iiasdkasdasdgit config merge.tool vimdiff
