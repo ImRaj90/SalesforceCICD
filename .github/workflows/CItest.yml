@@ -1,0 +1,15 @@
+name: CI
+
+on: [push]
+
+jobs:
+  setup:
+    if: ${{ github.ref == 'refs/heads/main' }} 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+         chmod +x testlevel.sh
+         bash testlevel.sh
+        
+ 
