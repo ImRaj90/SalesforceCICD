@@ -12,8 +12,12 @@ adfjladskfjalsdkfadfjladskfjalsdkfadfjladskfjalsdkfadfjladskfjalsdkfadfjladskfja
 
 ooo
 
+<<<<<<< HEAD
 pppasdfasdfasdfp
 
 
 ppp
+=======
+pppadsfasdfs
+>>>>>>> feature/right-2-left
 f
