@@ -20,11 +20,10 @@ jobs:
           mkdir sfdx-cli
           tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
           ./sfdx-cli/install
-          echo 'y' | sfdx plugins:install sfpowerkit
-          echo 'y' | sfdx plugins:install @dxatscale/sfpowerscripts
-          sfdx sfpowerkit:project:diff --revisionfrom ${{github.event.inputs.manual_commit_id}} --revisionto revisionto --output OutputFolder
+          echo 'y' | sfdx plugins:install sfdx-git-delta
+          sfdx sgd:source:delta --to "HEAD" --from ${{github.event.inputs.manual_commit_id}} --output "OutputFolder"
           tree OutputFolder
-      - name: deltapkg these
+      - name: deltapkg
         run: |
-         sfdx sfpowerkit:project:diff --revisionfrom ${{github.event.inputs.manual_commit_id}} --revisionto revisionto --output OutputFolder
-         tree OutputFolder
+          sfdx sgd:source:delta --to "HEAD" --from ${{github.event.inputs.manual_commit_id}} --output "OutputFolder"
+          tree OutputFolder
