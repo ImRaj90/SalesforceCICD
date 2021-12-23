@@ -1,0 +1,335 @@
+
+IO
+Sign in
+
+Get started
+
+Follow
+385 Followers
+rodOpsIO
+Sign inll Prodops.io Stories
+Prodops.io Website
+About
+
+
+You have 1 free member-only story left this month. Sign up for Medium and get an extra one
+
+Solving git merge conflicts with VIM
+A flow so smooth youd be wishing for conflicts to happen
+Omer Hamerman
+Omer Hamerman
+
+Mar 24, 2019
+
+Geted
+
+
+
+
+
+
+
+Photo by pexels.com
+Iuse VIM.
+These lines are written in VIM, and so does every single line of code I write.
+Git has become an integrated tool of almost everyone in tech and merge-conflicts are often a part of work.
+Conflicts generally arise when two people have changed the same lines in a file
+In these cases, Git cannot automatically determine what is correct.
+Conflicts only affect the developer conducting the merge, the rest of the team is unaware of the conflict.
+Git will mark the file as being conflicted and halt the merging process.
+It is then the developers responsibility to resolve the conflict.
+startedtlassian Git Tutorials
+Solving a git conflict was always a personal hurdle; either I tried ignoring it by not doing the merge/undoing changes in HEAD or another hacky solution I found randomly.
+Once I accepted the fact that conflicts happen I tried rebasing, by even setting my merge by default to git merge --rebase thinking this would make all conflicts go away.
+But it turns out that rebasing wont keep you away from conflicts; rebase applies your commits one by one on top of the target branchs HEAD,
+as such, rebase often introduces conflicts that must be dealt with to
+git merge --continue.
+The fugitives way
+Vim Fugitive is an awesome plugin by @tpope [https://github.com/tpope/vim-fugitive].
+One of its awesome features is Gstatus and Gdiff which allow you to watch your projects status and diffs much like using git status & git diff from your terminal or favorite git interface.
+Theres a very smooth way of dealing with these conflicts right inside VIM; using Gdiff when editing a conflicted file, fugitive would launch a three-way diff by surrounding your current workspace file. Two new buffers would appear: one for the target branch (i.e. the one youre merging *into*), and the other would be the merge branch (i.e. the branch that is being merged to).
+Validation of the previous concept: If Im working on master, and Id like to merge staging into it, Id run git merge staging.
+In this case master being the target branch, and staging is the merge branch.
+This terminology is important for later reference to be clear on which buffer well be choosing for the conflict resolution.
+Heres an excellent video by Drew Niel describing the above (practical VIM): http://vimcasts.org/episodes/fugitive-vim-resolving-merge-conflicts-with-vimdiff/
+Whats more to say?
+The method above goes through working with inconvenient buffer system and hard to follow commands like diffput or diffget which made little sense to me when I tried figuring out buffer name reference. The flow wasnt smooth and I felt something was missing.
+To solve my problem, I used a few aliases integrated into my .vimrc so that resolving conflicts became enjoyable, smooth and most importantly 
+ntuitive; I dont want to think about what Im doing, I want to do it. Plus, I want it to be better and faster than any other tool Ive seen doing the same, by removing the complexity and unintuitive processes in the way.
+My addition
+Lets review the additions I made to my .vimrc and how they become useful when solving conflicts:
+" Fugitive Conflict Resolution
+nnoremap <leader>gd :Gvdiff<CR>
+nnoremap gdh :diffget //2<CR>
+nnoremap gdl :diffget //3<CR>
+The three lines above are all it takes to resolve a conflict with ease;
+Start by typing <leader>gd as in git diff, which creates a three-way split screen described above. In my mapping, I use Gvdiff to split the panes vertically. If your preference is a horizontal view leave the v out: Gdiff.
+Heres what it looks like:
+
+Git three-way diff
+Note how the center pane is my current workspace, the left side is HEAD and how my code will look like should I choose that option, while the right side is describing master branch state.
+In order to decide on my changes in HEAD, according to my mapping, I type gdh, the gd stand for git diff and the h being VIMs left key. I intentionally left the leader key out of this sequence as it is an inner process combination.
+After choosing master my current workspace changes to:
+
+Workspace pane after selecting the left side with `gdh`
+Note that the actual command in the bottom left corner mentions
+:diffget //2 which is fugitives way of getting the changes from the buffer with //2 in its name.
+Useful additions to make this process whole:
+Jumping to the next git hunk (or conflict to fix) can be done with [c to backward or ]c to search forward
+When you are satisfied with your workspace (usually when all conflicts are resolved) its time to leave just this pane open; we can do that with <C-w>o which tells VIMs window manager to leave the current pane only.
+Thats all it takes.
+Getting used to this sequence is a breeze, making conflicts life much easier (and fun) to work through.
+My name is Omer, and I am an engineer at ProdOps 
+F global consultancy that delivers software in a Reliable, Secure and Simple way by adopting the DevOps culture. Let me know your thoughts in the comments below, or connect with me directly on Twitter @omergsr. Clap if you liked it, it helps me focus my future writings.
+Omer Hamerman
+Software Developer and DevOps Architect @ ProdOps.io
+
+Follow
+
+OMER HAMERMAN FOLLOWS
+Aytekin Tank
+Aytekin Tank
+Vickie Li
+Vickie Li
+Tom Kuegler
+Tom Kuegler
+Benjamin Hardy, PhD
+Benjamin Hardy, PhD
+Darius Foroux
+Darius Foroux
+See all (153)
+
+750
+
+
+3
+
+Related
+
+
+API Testing with HTTPie
+Testing is a crucial part of software development. It comes in different flavors such as unit testing, stress testing, acceptance testing
+
+Importance of Git
+Why is git Important for developers?
+
+An Introduction to Cloud Computing with Azure
+
+5 Key Items to Know about Azure Cosmos DB
+Lets get started with some introduction to Microsoft Azures fully managed NoSQL databaseollowzure Cosmos DB.
+Git
+Github
+Vim
+Productivity
+Code
+750
+
+
+3
+
+
+
+
+
+
+More from ProdOpsIO
+
+Follow
+Fusion of Engineering and Operations
+
+Read more from ProdOpsIO
+More From Medium
+Denial-of-Service disclosure for Meteor APM/Kadira agent
+Jesse Rosenberger in Meteor Blog
+
+Understanding Negotiation and Agile Estimation
+Hamid Zarei in The Startup
+
+Introduction to IPFS: Run Nodes on Your Network, with HTTP Gateways
+Ross Bulat
+
+Authentication and Authorization in NodeJS GraphQL API
+Marek Piechut in Real Life Programming
+
+LVM with Hadoop
+Vikas Verma in Level Up Coding
+
+Building a Kubernetes CI/CD pipeline on AWS with CodePipeline & CodeBuild @ Shopgun
+Roffe in ITNEXT
+
+A comparison of GraphQL and REST
+Cameron Newby in ITNEXT
+
+Sustainability in Software Engineering
+Bill Johnson
+
+About
+
+Write
+
+Help
+
+Legal
+
+385 Followers
+·
+All Prodops.io Stories
+Prodops.io Website
+About
+
+
+You have 1 free member-only story left this month. Sign up for Medium and get an extra one
+
+Solving git merge conflicts with VIM
+A flow so smooth you’d be wishing for conflicts to happen
+Omer Hamerman
+Omer Hamerman
+
+Mar 24, 2019·4 min read
+
+
+
+
+
+
+
+Photo by pexels.com
+Iuse VIM.
+These lines are written in VIM, and so does every single line of code I write.
+Git has become an integrated tool of almost everyone in tech and merge-conflicts are often a part of work.
+Conflicts generally arise when two people have changed the same lines in a file…
+In these cases, Git cannot automatically determine what is correct.
+Conflicts only affect the developer conducting the merge, the rest of the team is unaware of the conflict.
+Git will mark the file as being conflicted and halt the merging process.
+It is then the developers’ responsibility to resolve the conflict.
+— Atlassian Git Tutorials
+Solving a git conflict was always a personal hurdle; either I tried ignoring it by not doing the merge/undoing changes in HEAD or another hacky solution I found randomly.
+Once I accepted the fact that conflicts happen I tried rebasing, by even setting my merge by default to git merge --rebase thinking this would make all conflicts go away.
+But it turns out that rebasing won’t keep you away from conflicts; rebase applies your commits one by one on top of the target branch’s HEAD,
+as such, rebase often introduces conflicts that must be dealt with to
+git merge --continue.
+The fugitive’s way
+Vim Fugitive is an awesome plugin by @tpope [https://github.com/tpope/vim-fugitive].
+One of its awesome features is Gstatus and Gdiff which allow you to watch your project’s status and diffs much like using git status & git diff from your terminal or favorite git interface.
+There’s a very smooth way of dealing with these conflicts right inside VIM; using Gdiff when editing a conflicted file, fugitive would launch a three-way diff by surrounding your current workspace file. Two new buffers would appear: one for the target branch (i.e. the one you’re merging *into*), and the other would be the merge branch (i.e. the branch that is being merged to).
+Validation of the previous concept: If I’m working on master, and I’d like to merge staging into it, I’d run git merge staging.
+In this case master being the target branch, and staging is the merge branch.
+This terminology is important for later reference to be clear on which buffer we’ll be choosing for the conflict resolution.
+Here’s an excellent video by Drew Niel describing the above (practical VIM): http://vimcasts.org/episodes/fugitive-vim-resolving-merge-conflicts-with-vimdiff/
+What’s more to say?
+The method above goes through working with inconvenient buffer system and hard to follow commands like diffput or diffget which made little sense to me when I tried figuring out buffer name reference. The flow wasn’t smooth and I felt something was missing.
+To solve my problem, I used a few aliases integrated into my .vimrc so that resolving conflicts became enjoyable, smooth and most importantly — intuitive; I don’t want to think about what I’m doing, I want to do it. Plus, I want it to be better and faster than any other tool I’ve seen doing the same, by removing the complexity and unintuitive processes in the way.
+My addition
+Let’s review the additions I made to my .vimrc and how they become useful when solving conflicts:
+" Fugitive Conflict Resolution
+nnoremap <leader>gd :Gvdiff<CR>
+nnoremap gdh :diffget //2<CR>
+nnoremap gdl :diffget //3<CR>
+The three lines above are all it takes to resolve a conflict with ease;
+Start by typing <leader>gd as in git diff, which creates a three-way split screen described above. In my mapping, I use Gvdiff to split the panes vertically. If your preference is a horizontal view leave the v out: Gdiff.
+Here’s what it looks like:
+
+Git three-way diff
+Note how the center pane is my current workspace, the left side is HEAD and how my code will look like should I choose that option, while the right side is describing master branch state.
+In order to decide on my changes in HEAD, according to my mapping, I type gdh, the gd stand for git diff and the h being VIM’s left key. I intentionally left the leader key out of this sequence as it is an inner process combination.
+After choosing master my current workspace changes to:
+
+Workspace pane after selecting the left side with `gdh`
+Note that the actual command in the bottom left corner mentions
+:diffget //2 which is fugitive’s way of getting the changes from the buffer with //2 in its name.
+Useful additions to make this process whole:
+Jumping to the next git hunk (or conflict to fix) can be done with [c to backward or ]c to search forward
+When you are satisfied with your workspace (usually when all conflicts are resolved) it’s time to leave just this pane open; we can do that with <C-w>o which tells VIM’s window manager to leave the current pane only.
+That’s all it takes.
+Getting used to this sequence is a breeze, making conflicts life much easier (and fun) to work through.
+My name is Omer, and I am an engineer at ProdOps — a global consultancy that delivers software in a Reliable, Secure and Simple way by adopting the DevOps culture. Let me know your thoughts in the comments below, or connect with me directly on Twitter @omergsr. Clap if you liked it, it helps me focus my future writings.
+Omer Hamerman
+Software Developer and DevOps Architect @ ProdOps.io
+
+Follow
+
+OMER HAMERMAN FOLLOWS
+Aytekin Tank
+Aytekin Tank
+Vickie Li
+Vickie Li
+Tom Kuegler
+Tom Kuegler
+Benjamin Hardy, PhD
+Benjamin Hardy, PhD
+Darius Foroux
+Darius Foroux
+See all (153)
+
+750
+
+
+3
+
+Related
+
+
+API Testing with HTTPie
+Testing is a crucial part of software development. It comes in different flavors such as unit testing, stress testing, acceptance testing…
+
+Importance of Git
+Why is git Important for developers?
+
+An Introduction to Cloud Computing with Azure
+
+5 Key Items to Know about Azure Cosmos DB
+Let’s get started with some introduction to Microsoft Azure’s fully managed NoSQL database — Azure Cosmos DB.
+Git
+Github
+Vim
+Productivity
+Code
+750
+
+
+3
+
+
+
+
+
+
+More from ProdOpsIO
+
+Follow
+Fusion of Engineering and Operations
+
+Read more from ProdOpsIO
+More From Medium
+Denial-of-Service disclosure for Meteor APM/Kadira agent
+Jesse Rosenberger in Meteor Blog
+
+Understanding Negotiation and Agile Estimation
+Hamid Zarei in The Startup
+
+Introduction to IPFS: Run Nodes on Your Network, with HTTP Gateways
+Ross Bulat
+
+Authentication and Authorization in NodeJS GraphQL API
+Marek Piechut in Real Life Programming
+
+LVM with Hadoop
+Vikas Verma in Level Up Coding
+
+Building a Kubernetes CI/CD pipeline on AWS with CodePipeline & CodeBuild @ Shopgun
+Roffe in ITNEXT
+
+A comparison of GraphQL and REST
+Cameron Newby in ITNEXT
+
+Sustainability in Software Engineering
+Bill Johnson
+
+About
+
+Write
+
+Help
+
+Legal
+
