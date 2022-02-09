@@ -24,7 +24,11 @@ jobs:
           mkdir sfdx-cli
           tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
           ./sfdx-cli/install
-          npm install n stable -g
+          wget https://nodejs.org/dist/v16.14.0/node-v16.14.0.tar.xz         
+          node-v16.14.0
+          tar xJf node-v16.14.0.tar.xz -C node-v16.14.0 --strip-components 1
+          ./node-v16.14.0/install
+          node --version
           echo 'y' | sfdx plugins:install sfpowerkit
           echo 'y' | sfdx plugins:install @dxatscale/sfpowerscripts
           sfdx sfpowerkit:project:diff --revisionfrom ${{github.event.inputs.manual_commit_id_from}} --revisionto ${{github.event.inputs.manual_commit_id_to}} --output OutputFolder
