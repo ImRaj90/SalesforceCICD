@@ -20,10 +20,9 @@ jobs:
           
       - name: Install salesforce
         run: |
-          wget https://nodejs.org/dist/v16.14.0/node-v16.14.0.tar.xz         
-          mkdir node
-          tar xJf node-v16.14.0.tar.xz -C node --strip-components 1
-          ./node/install
+          sudo apt update
+          sudo apt install nodejs npm
+          node --version
           wget https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
           mkdir sfdx-cli
           tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
