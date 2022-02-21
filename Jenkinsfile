@@ -1,9 +1,9 @@
 pipeline {
-    agent { docker { image 'ubuntu:latest' } }
+    agent any
     stages {
         stage('build') {
             steps {
-                sh 'echo hello world'
+                echo 'hello world'
             }
         }
     }
