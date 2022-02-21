@@ -4,8 +4,7 @@ pipeline {
         stage('build') {
             steps {
                 echo 'hello world'
-                node -v
-                java -version
+                git branch -a
             }
         }
     }
