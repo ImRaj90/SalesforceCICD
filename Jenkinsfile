@@ -4,7 +4,8 @@ pipeline {
         stage('build') {
             steps {
                 echo 'hello world'
-                sh 'ls -ltr'
+                node -v
+                java -version
             }
         }
     }
