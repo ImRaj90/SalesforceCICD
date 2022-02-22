@@ -1,10 +1,10 @@
 pipeline {
-    agent any
+    agent {label "linux"}
     stages {
         stage('build') {
             steps {
                 echo 'hello world'
-                git branch -a
+                sh "git branch -a"
             }
         }
     }
