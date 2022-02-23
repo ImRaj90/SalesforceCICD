@@ -12,7 +12,7 @@ pipeline {
             }
             stage("Delta-package") {
                steps {
-                  sh "sfdx sfpowerkit:project:diff --revisionfrom ${manual_commit_id_from} --revisionto ${manual_commit_id_to} --output OutputFolder"
+                  echo "hello world"
             } 
      
         }
