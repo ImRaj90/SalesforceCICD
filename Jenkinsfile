@@ -5,7 +5,8 @@ pipeline {
         stage('Hello') {
             steps {
                   sh "pwd"
-                  sh "ls -lrt"                
+                  sh "ls -lrt"
+                  sh "chmod +x ./scripts/hellworld.sh"
                   sh "./scripts/hellworld.sh"
 
             }
