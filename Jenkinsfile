@@ -8,7 +8,6 @@ pipeline {
                   sh "ls -lrt"
                   sh "chmod +x ./scripts/hellworld.sh"
                   sh "./scripts/hellworld.sh"
-
             }
         }
     }
