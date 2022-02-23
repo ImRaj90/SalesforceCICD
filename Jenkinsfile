@@ -6,7 +6,7 @@ pipeline {
             steps {
                   sh "pwd"
                   sh "ls -lrt"                
-                  sh "*/scripts/hellworld.sh"
+                  sh "./scripts/hellworld.sh"
 
             }
         }
