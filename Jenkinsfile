@@ -9,6 +9,7 @@ pipeline {
                   sh "tar xJf sfdx-linux-x64.tar.xz -C ~/sfdx --strip-components 1"
                   sh "export PATH=~/sfdx/bin:$PATH"
                   sh "PATH=~/sfdx/bin:$PATH"
+                  sh "node -v"
             }
         }
     }
