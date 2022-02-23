@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'ubuntu' }
+    agent { label 'AWSEC2Server' }
 
     stages {
         stage('Hello') {
