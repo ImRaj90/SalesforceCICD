@@ -1,10 +1,12 @@
 pipeline {
-    agent any
+    agent { label 'ubuntu' }
+
     stages {
-        stage('build') {
+        stage('Hello') {
             steps {
-                echo 'hello world'
-                bat "choco install -y nodejs-lts"
+
+                  powershell(script: "node -v")
+
             }
         }
     }
