@@ -10,11 +10,7 @@ pipeline {
                   sh "chmod +x ./scripts/hellworld.sh"
                   sh "./scripts/hellworld.sh"
             }
-            stage("Delta-package") {
-               steps {
-                  echo "hello world"
-            } 
-     
+
         }
     }
 }
