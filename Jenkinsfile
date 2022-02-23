@@ -6,9 +6,7 @@ pipeline {
             steps {
                   sh "pwd"
                   sh "ls -lrt"                
-                  sh "cd SalesforceCICD"
-                  sh "ls -lrt"
-                  sh "./SalesforceCICD/scripts/hellworld.sh"
+                  sh "*/scripts/hellworld.sh"
 
             }
         }
