@@ -4,9 +4,7 @@ pipeline {
     stages {
         stage('Hello') {
             steps {
-
-                  powershell(script: "node -v")
-
+                  sh "echo hellowrold"
             }
         }
     }
