@@ -9,6 +9,7 @@ pipeline {
                   sh "ls -lrt"
                   sh "chmod +x ./scripts/hellworld.sh"
                   sh "./scripts/hellworld.sh"
+                  sh "sfdx sfpowerkit:project:diff --revisionfrom ${params.manual_commit_id_from} --revisionto ${params.manual_commit_id_to} --output OutputFolder"
             }
         }
         stage('Delta-package') {
