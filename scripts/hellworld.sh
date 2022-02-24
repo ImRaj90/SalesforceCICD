@@ -8,3 +8,10 @@ npm -v
 npm install --global sfdx-cli
 echo 'y' | sfdx plugins:install sfpowerkit
 echo 'y' | sfdx plugins:install @dxatscale/sfpowerscripts
+echo $PATH
+which node
+echo $PATH
+which npm
+echo $PATH
+which sfdx-cli
+echo $PATH
