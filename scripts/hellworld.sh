@@ -8,3 +8,4 @@ npm -v
 npm install --global sfdx-cli
 echo 'y' | sfdx plugins:install sfpowerkit
 echo 'y' | sfdx plugins:install @dxatscale/sfpowerscripts
+sfdx sfpowerkit:project:diff --revisionfrom fa62f5408570ea895eab4497b94eaa70a5526392 --revisionto HEAD --output OutputFolder
