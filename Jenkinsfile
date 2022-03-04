@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'AWSEC2Server' }
+    agent any
 
     stages {
         stage('install software') {
