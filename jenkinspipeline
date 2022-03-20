@@ -15,7 +15,7 @@ pipeline {
                       git clone https://github.com/ImRaj90/SalesforceCICD.git
                       cd SalesforceCICD
                     fi
-                    git checkout develop
+                    git checkout ${BranchName}
                     git branch
                     '''
                     }
@@ -34,7 +34,7 @@ pipeline {
                 sh '''
                    ls -ltra  
                    cd SalesforceCICD
-                   sfdx sfpowerkit:project:diff --revisionfrom 34b0cc9ddd9eecc796010a032fe6ef834ed82f6c --revisionto HEAD --output dkg
+                   sfdx sfpowerkit:project:diff --revisionfrom ${CommitIDFrom} --revisionto ${CommitIDTo} --output dkg
                 '''
             }
         }
@@ -45,7 +45,6 @@ pipeline {
                 cd SalesforceCICD
                 echo 'checkonlydeployment'
                     ls -ltra
-                    
                     cd dkg
                     ls -ltra
                     cat diff.json
@@ -58,7 +57,13 @@ pipeline {
         }
         stage('deployment') {
             steps {
-                sh '''                
+                sh '''
+                    ls -ltra
+                    cd dkg
+                    ls -ltra
+                    cat diff.json
+                    ls -ltr
+                    tree force-app/main/default
                 sfdx force:source:deploy -c -p force-app -u devorg
                 echo 'deployment'
                 '''
