@@ -1,0 +1,69 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('csm') {
+            steps {
+                echo 'Hello World'
+                sh "pwd"
+                sh '''git --version
+                    DIR="SalesforceCICD"
+                    if [ -d "$DIR" ]; then
+                      cd SalesforceCICD
+                      git pull
+                    else  
+                      git clone https://github.com/ImRaj90/SalesforceCICD.git
+                      cd SalesforceCICD
+                    fi
+                    git checkout develop
+                    git branch
+                    '''
+                    }
+            }
+        stage('authenitcating') {
+            steps {
+                sh '''
+                    sfdx sfpowerkit:auth:login -u rajashekar231@outlook.com -p Shek@r231PBViXyRP6dvjn8XTpwnVdMk7E -r https:/login.salesforce.com/ -a devorg
+                '''
+                }
+        }            
+
+        stage('deltapkg') {
+            steps {
+                echo 'deltapkg'
+                sh '''
+                   ls -ltra  
+                   cd SalesforceCICD
+                   sfdx sfpowerkit:project:diff --revisionfrom 34b0cc9ddd9eecc796010a032fe6ef834ed82f6c --revisionto HEAD --output dkg
+                '''
+            }
+        }
+
+        stage('checkonlydeployment') {
+            steps {
+                sh '''
+                cd SalesforceCICD
+                echo 'checkonlydeployment'
+                    ls -ltra
+                    
+                    cd dkg
+                    ls -ltra
+                    cat diff.json
+                    ls -ltr
+                    tree force-app/main/default
+                sfdx force:source:deploy -c -p force-app -u devorg
+                '''
+            
+            }
+        }
+        stage('deployment') {
+            steps {
+                sh '''                
+                sfdx force:source:deploy -c -p force-app -u devorg
+                echo 'deployment'
+                '''
+            }
+        }
+
+    }
+}
