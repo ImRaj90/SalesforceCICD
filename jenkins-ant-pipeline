@@ -1,0 +1,72 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('csm') {
+            steps {
+
+                echo 'Hello World'
+                sh "pwd"
+                sh '''git --version
+                export JAVA_HOME=/opt/jdk-17
+                export PATH=$PATH:$JAVA_HOME/bin
+                java -version
+                ls -ltr
+                export ANT_HOME=/opt/apache-ant-1.10.12
+                export PATH=$PATH:$JAVA_HOME/bin:$ANT_HOME/bin
+                      
+                      file $(which java)
+                      ant -version
+                    DIR="SalesforceCICD"
+                    if [ -d "$DIR" ]; then
+                      cd SalesforceCICD
+                      git pull
+                    else  
+                      git clone https://github.com/ImRaj90/SalesforceCICD.git
+                      cd SalesforceCICD
+                    fi
+                    git checkout develop
+                    git branch
+                    git reset --hard
+                    '''
+                    }
+            }
+            
+            
+        stage('deltapkg-Convert') {
+            steps {
+                echo 'deltapkg'
+                sh '''
+                   ls -ltra  
+                   cd SalesforceCICD
+                   sfdx sfpowerkit:project:diff --revisionfrom 34b0cc9ddd9eecc796010a032fe6ef834ed82f6c --revisionto HEAD --output dkg
+                   sfdx force:source:convert -r dkg -d outdir -n codepkg 
+                   tree dkg
+                    tree outdir
+                    tree codepkg
+                '''
+            }
+        }  
+       stage('Checkonly deployment') {
+          
+            steps {
+                
+                sh '''
+                pwd
+                ls -trl 
+                tree SalesforceCICD
+                cd SalesforceCICD
+                export JAVA_HOME=/opt/jdk-17
+                export PATH=$PATH:$JAVA_HOME/bin
+                java -version
+                ls -ltr
+                export ANT_HOME=/opt/apache-ant-1.10.12
+                export PATH=$PATH:$JAVA_HOME/bin:$ANT_HOME/bin
+                ant
+                '''
+            }
+        }
+        
+       
+    }
+}
