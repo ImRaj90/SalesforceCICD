@@ -20,7 +20,7 @@
  <!-- Shows deploying code & running tests for code in directory -->
     <target name="test">
       <!-- Upload the contents of the "codepkg" directory, running the tests for just 1 class -->
-            <sf:deploy username="${sf.username}" password="${sf.password}"  serverurl="https://login.salesforce.com/" maxPoll="${sf.maxPoll}" deployRoot="codepkg" rollbackOnError="true" checkonly="true">
+            <sf:deploy username="${sf.username}" password="${sf.password}"  serverurl="https://login.salesforce.com/" maxPoll="${sf.maxPoll}" deployRoot="outdir" rollbackOnError="true" checkonly="true">
       </sf:deploy>
     </target>
 
