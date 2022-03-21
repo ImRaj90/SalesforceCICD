@@ -3,12 +3,6 @@
     <property file="build.properties"/>
     <property environment="env"/>
 
-    <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
-        <classpath>
-            <pathelement location="../ant-salesforce.jar" />
-        </classpath>
-    </taskdef>
-
  <!-- Shows deploying code & running tests for code in directory -->
     <target name="deploy">
       <!-- Upload the contents of the "codepkg" directory, running the tests for just 1 class -->
