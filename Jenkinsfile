@@ -8,6 +8,7 @@ pipeline {
                       npm --version
                       node --version
                       sfdx --version
+                      sfdx plugins
                 '''
             }
         }
