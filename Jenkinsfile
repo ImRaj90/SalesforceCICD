@@ -5,6 +5,9 @@ pipeline {
             steps {
                 sh '''java -version
                       git --version
+                      npm --version
+                      node --version
+                      sfdx --version
                 '''
             }
         }
