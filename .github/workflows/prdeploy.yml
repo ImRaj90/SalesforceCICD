@@ -31,7 +31,7 @@ jobs:
           git_previous_branchcommitd=$(curl -H "Authorization: $SOURCE_TOKEN" "https://api.github.com/repos/ImRaj90/SalesforceCICD/actions/workflows/deltapkg.yml/runs?status=success" | grep -A1 develop | head -2 | cut -d "," -f1 | awk '{split($0,a,":"); print a[2]}' | tail -1 | xargs)
           echo $git_previous_branchcommitd
           sfdx sfpowerkit:project:diff --revisionfrom $git_previous_commitid --revisionto $head1 --output OutputFolder
-
+          tree OutputFolder
 
       - name: deltapkg these
         run: |
