@@ -1,4 +1,4 @@
-name: 'deltapkg'
+name: 'prdeploy'
 
 on:
   push:
@@ -14,7 +14,7 @@ jobs:
           fetch-depth: 0
       - name: Install salesforce
         run: |
-          npm install sfdx-cli
+          npm install -g sfdx-cli
           echo 'y' | sfdx plugins:install sfpowerkit
           echo 'y' | sfdx plugins:install @dxatscale/sfpowerscripts
       - name: get previous commitid
