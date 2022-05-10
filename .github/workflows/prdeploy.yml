@@ -33,8 +33,7 @@ jobs:
           sfdx sfpowerkit:project:diff --revisionfrom $git_previous_commitid --revisionto $head1 --output OutputFolder
 
 
-
       - name: deltapkg these
         run: |
-         sfdx sfpowerkit:project:diff --revisionfrom ${{github.event.inputs.manual_commit_id}} --revisionto revisionto --output OutputFolder
+         sfdx sfpowerkit:project:diff --revisionfrom $git_previous_commitid --revisionto $head1 --output OutputFolder
          tree OutputFolder
