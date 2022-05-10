@@ -24,8 +24,7 @@ jobs:
           echo 'y' | sfdx plugins:install @dxatscale/sfpowerscripts
       - name: get previous commitid
         run: |
-          git_previous_commitid=$(curl -H "Authorization: $SOURCE_TOKEN" "https://api.github.com/repos/ImRaj90/SalesforceCICD/actions/workflows/de
-ltapkg.yml/runs?status=success" | grep -i head_sha | head -1 | cut -d "," -f1 | awk -F ":" '{print $2}' | sed 's/"//g' | xargs)
+          git_previous_commitid=$(curl -H "Authorization: $SOURCE_TOKEN" "https://api.github.com/repos/ImRaj90/SalesforceCICD/actions/workflows/deltapkg.yml/runs?status=success" | grep -i head_sha | head -1 | cut -d "," -f1 | awk -F ":" '{print $2}' | sed 's/"//g' | xargs)
           echo $git_previous_commitid
       - name: deltapkg these
         run: |
