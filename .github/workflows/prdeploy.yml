@@ -1,0 +1,33 @@
+name: 'deltapkg'
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - develop
+      
+jobs:
+  deltapkg:
+    if: ${{ github.event.pull_request.merged == true }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Install salesforce
+        run: |
+          wget https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
+          mkdir sfdx-cli
+          tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
+          ./sfdx-cli/install
+          echo 'y' | sfdx plugins:install sfpowerkit
+          echo 'y' | sfdx plugins:install @dxatscale/sfpowerscripts
+      - name: get previous commitid
+        run: |
+          git_previous_commitid=$(curl -H "Authorization: $SOURCE_TOKEN" "https://api.github.com/repos/ImRaj90/SalesforceCICD/actions/workflows/de
+ltapkg.yml/runs?status=success" | grep -i head_sha | head -1 | cut -d "," -f1 | awk -F ":" '{print $2}' | sed 's/"//g' | xargs)
+          echo $git_previous_commitid
+      - name: deltapkg these
+        run: |
+         sfdx sfpowerkit:project:diff --revisionfrom ${{github.event.inputs.manual_commit_id}} --revisionto revisionto --output OutputFolder
+         tree OutputFolder
