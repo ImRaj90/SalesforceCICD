@@ -18,7 +18,7 @@ jobs:
           echo git_previous_commitid: $git_previous_commitid
           branchName2=`git log -1 --pretty=format:"%s" | awk '{split($0,a,":"); print a[1]}'`
           echo branchName2 $branchName2
-          git_previous_branchcommitd=$(curl -H "Authorization: $SOURCE_TOKEN" "https://api.github.com/repos/ImRaj90/SalesforceCICD/actions/workflows/deltapkg.yml/runs?status=success" | grep -A1 $branchName2 | head -2)
+          git_previous_branchcommitd=$(curl -H "Authorization: $SOURCE_TOKEN" "https://api.github.com/repos/ImRaj90/SalesforceCICD/actions/workflows/deltapkg.yml/runs?status=success" | grep -A1 develop | head -2 | cut -d "," -f1 | awk '{split($0,a,":"); print a[2]}' | tail -1 | xargs)
           echo $git_previous_branchcommitd
 
 
