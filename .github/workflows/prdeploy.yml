@@ -16,10 +16,10 @@ jobs:
         run: |
           git_previous_commitid=$(curl -H "Authorization: $SOURCE_TOKEN" "https://api.github.com/repos/ImRaj90/SalesforceCICD/actions/workflows/deltapkg.yml/runs?status=success" | grep -i head_sha | head -1 | cut -d "," -f1 | awk -F ":" '{print $2}' | sed 's/"//g' | xargs)
           echo git_previous_commitid: $git_previous_commitid
-          git_previous_branchcommitd=$(curl -H "Authorization: $SOURCE_TOKEN" "https://api.github.com/repos/ImRaj90/SalesforceCICD/actions/workflows/deltapkg.yml/runs?status=success" | grep -A1 $branchName | head -2)
-          echo $git_previous_branchcommitd
-          branchName2=`git log -1 --pretty=format:"%s" | awk '{split($0,a," "); print a[1]}'`
+          branchName2=`git log -1 --pretty=format:"%s" | awk '{split($0,a,":"); print a[1]}'`
           echo branchName2 $branchName2
+          git_previous_branchcommitd=$(curl -H "Authorization: $SOURCE_TOKEN" "https://api.github.com/repos/ImRaj90/SalesforceCICD/actions/workflows/deltapkg.yml/runs?status=success" | grep -A1 $branchName2 | head -2)
+          echo $git_previous_branchcommitd
 
 
       - name: deltapkg these
