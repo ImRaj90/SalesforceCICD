@@ -12,19 +12,15 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Install salesforce
-        run: |
-          npm install -g sfdx-cli
-          echo 'y' | sfdx plugins:install sfpowerkit
-          echo 'y' | sfdx plugins:install @dxatscale/sfpowerscripts
       - name: get previous commitid
         run: |
           git_previous_commitid=$(curl -H "Authorization: $SOURCE_TOKEN" "https://api.github.com/repos/ImRaj90/SalesforceCICD/actions/workflows/deltapkg.yml/runs?status=success" | grep -i head_sha | head -1 | cut -d "," -f1 | awk -F ":" '{print $2}' | sed 's/"//g' | xargs)
           echo displaying "$git_previous_commitid
-          git_previous_commitid=`curl -H "Authorization: $SOURCE_TOKEN" "https://api.github.com/repos/ImRaj90/SalesforceCICD/actions/workflows/deltapkg.yml/runs?status=success" | grep -i head_sha | head -1 | cut -d "," -f1 | awk -F ":" '{print $2}' | sed 's/"//g' | xargs`
-          echo i3splaying "$git_previous_commitid1
-
-          branchName=`git log -1 --pretty=format:%s | awk 'split($0,a,"");print a[1]'`
+          git_previous_commitid1=`curl -H "Authorization: $SOURCE_TOKEN" "https://api.github.com/repos/ImRaj90/SalesforceCICD/actions/workflows/deltapkg.yml/runs?status=success" | grep -i head_sha | head -1 | cut -d "," -f1 | awk -F ":" '{print $2}' | sed 's/"//g' | xargs`
+          echo i3splaying $git_previous_commitid1
+          branchName2=$(git log -1 --pretty=format:"%s" | awk '{split($0,a," "); print a[1]}')
+          echo branchName2 $branchName2
+          branchName=`git log -1 --pretty=format:"%s" | awk '{split($0,a," "); print a[1]}'`
           echo $branchName
           git_previous_branchcommitd=$(curl -H "Authorization: $SOURCE_TOKEN" "https://api.github.com/repos/ImRaj90/SalesforceCICD/actions/workflows/deltapkg.yml/runs?status=success" | grep -A1 $branchName | head -2
           echo $git_previous_branchcommitd
