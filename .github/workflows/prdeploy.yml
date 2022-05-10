@@ -1,4 +1,4 @@
-name: 'deltapkg'
+name: 'prdeploy'
 
 on:
   pull_request:
