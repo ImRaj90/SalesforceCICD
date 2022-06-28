@@ -15,27 +15,38 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  sfdxvalidate:
+    name: "Run SFDX Validate"
     runs-on: ubuntu-latest
     container:
       image: salesforce/salesforcedx:latest-full
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    
+    # env:
+    #   CUMULUSCI_KEYCHAIN_CLASS: cumulusci.core.keychain.EnvironmentProjectKeychain
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-      - uses: docker://salesforce/salesforcedx:latest-rc-full
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: sdfx --version
-
-      
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+    # Checks out a copy of your repository on the ubuntu-latest machine
+    - name: Checkout code
+      uses: actions/checkout@v2
+    # - uses: actions/checkout@v2
+    - name: Setup AUth
+      run: |
+        # mkdir sfdx
+        # wget -qO- https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz | tar xJ -C sfdx --strip-components 1
+        # ./sfdx/install
+        echo "$SFDX_JWT_KEY" > jwt.key
+        sfdx force:auth:jwt:grant --jwtkeyfile jwt.key --username $SFDX_USERNAME --clientid $SFDX_CLIENTID -s
+        # echo ${{ secrets.SFDX_AUTH_URL }} > sfdx_auth
+        # sfdx force:auth:sfdxurl:store -f sfdx_auth -s
+    - name: Validate Source
+      run: sfdx force:source:deploy -c -p force-app
+    - name: Backup Org
+      run: curl --location --request POST "https://app1.ownbackup.com/api/v1/services/54955/backup_now" --header "X-SESSION-ID:ec815a2ca35bf9611b851a9a600f51d2" --header "Cookie:_session_id=ec815a2ca35bf9611b851a9a600f51d2"
+    # - name: Set up Python
+    #   uses: actions/setup-python@v1
+    #   with:
+    #     python-version: "3.8"
+    # - name: Install CumulusCI
+    #   run: |
+    #     python -m pip install -U pip
+    #     pip install cumulusci
+    # - run: |
+    #     cci flow run my_deploy --org demodeploy
