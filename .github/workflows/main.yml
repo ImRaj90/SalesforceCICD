@@ -29,24 +29,5 @@ jobs:
     # - uses: actions/checkout@v2
     - name: Setup AUth
       run: |
-        # mkdir sfdx
-        # wget -qO- https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz | tar xJ -C sfdx --strip-components 1
-        # ./sfdx/install
-        echo "$SFDX_JWT_KEY" > jwt.key
-        sfdx force:auth:jwt:grant --jwtkeyfile jwt.key --username $SFDX_USERNAME --clientid $SFDX_CLIENTID -s
-        # echo ${{ secrets.SFDX_AUTH_URL }} > sfdx_auth
-        # sfdx force:auth:sfdxurl:store -f sfdx_auth -s
-    - name: Validate Source
-      run: sfdx force:source:deploy -c -p force-app
-    - name: Backup Org
-      run: curl --location --request POST "https://app1.ownbackup.com/api/v1/services/54955/backup_now" --header "X-SESSION-ID:ec815a2ca35bf9611b851a9a600f51d2" --header "Cookie:_session_id=ec815a2ca35bf9611b851a9a600f51d2"
-    # - name: Set up Python
-    #   uses: actions/setup-python@v1
-    #   with:
-    #     python-version: "3.8"
-    # - name: Install CumulusCI
-    #   run: |
-    #     python -m pip install -U pip
-    #     pip install cumulusci
-    # - run: |
-    #     cci flow run my_deploy --org demodeploy
+        sfdx --version
+
