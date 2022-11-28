@@ -15,4 +15,6 @@ jobs:
           fetch-depth: 0
       - name: Install salesforce
         run: |
-          echo hellow ${{ github.base_ref }}
+          echo base ${{ github.base_ref }}
+          echo source ${{ github.head_ref }}
+
