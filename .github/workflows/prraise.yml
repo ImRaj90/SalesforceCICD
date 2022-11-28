@@ -2,7 +2,7 @@ name: 'prraise'
 
 on:
   pull_request:
-    types: open
+    types: [opened, reopened, closed]
     branches:
       - develop
       
@@ -19,3 +19,4 @@ jobs:
       - name: prdetails source
         run: |
           echo source ${{ github.head_ref }}
+
