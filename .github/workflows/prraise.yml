@@ -1,0 +1,19 @@
+name: 'prraise'
+
+on:
+  pull_request:
+    types: open
+    branches:
+      - develop
+      
+jobs:
+  deltapkg:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Install salesforce
+        run: |
+          echo base ${{ github.base_ref }}
+          echo source ${{ github.head_ref }}
