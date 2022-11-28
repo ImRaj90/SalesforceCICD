@@ -2,17 +2,20 @@ name: 'prraise'
 
 on:
   pull_request:
-    types: [open,closed]
+    types: open
     branches:
       - develop
       
 jobs:
-  deltapkg:
+  prdetails:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Install salesforce
+      - name: prdetails base
         run: |
-          echo hellow ${{ github.base_ref }}
+          echo base ${{ github.base_ref }}
+      - name: prdetails source
+        run: |
+          echo source ${{ github.head_ref }}
