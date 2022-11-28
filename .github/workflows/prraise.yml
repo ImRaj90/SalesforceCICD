@@ -2,7 +2,7 @@ name: 'prraise'
 
 on:
   pull_request:
-    types: [opened, reopened]
+    types: [opened, reopened, closed]
     branches:
       - develop
       
