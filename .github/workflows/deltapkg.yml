@@ -6,6 +6,9 @@ on:
       manual_commit_id:
         description: enter commit id
         required: true
+      UAT_SANDBOX:
+        type: boolean
+        description: Include 🎉🤣 emojis  
       Name:
         type: choice
         description: Who to greet
