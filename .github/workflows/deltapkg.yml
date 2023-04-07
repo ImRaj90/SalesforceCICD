@@ -6,6 +6,14 @@ on:
       manual_commit_id:
         description: enter commit id
         required: true
+      Name:
+        type: choice
+        description: Who to greet
+        options: 
+        - monalisa
+        - cschleiden 
+      environment:
+        type: environment        
 jobs:
   deltapkg:
     runs-on: ubuntu-latest
