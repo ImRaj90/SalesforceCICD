@@ -7,8 +7,13 @@ on:
         description: enter commit id
         required: true
       UAT_SANDBOX:
+        description: 'True to backync into UAT'
+        required: true
         type: boolean
-        description: Include 🎉🤣 emojis  
+      DEV_SANDBOX:
+        description: 'True to backync into DEV'
+        required: true
+        type: boolean        
       Name:
         type: choice
         description: Who to greet
