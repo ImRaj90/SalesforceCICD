@@ -18,7 +18,13 @@ jobs:
 
       - name: curl back
         run: |         
-          chmod +x devops-scripts/curl.sh
+          curl -L \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GITHUBTOKENCURL"\
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/ImRaj90/SalesforceCICD/actions/workflows/15845872/dispatches \
+             -d '{"ref":"main", "inputs": { "manual_commit_id":"Command Line User", "UAT_SANDBOX":"true","DEV_SANDBOX":"true","Name":"cschleiden","environment":"Test_Env6" }}'
+      
         env:
           GITHUBTOKENCURL: ${{ secrets.GITHUBTOKENCURL }}
           
