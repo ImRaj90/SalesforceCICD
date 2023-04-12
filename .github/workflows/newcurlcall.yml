@@ -20,5 +20,7 @@ jobs:
         run: |            
           chmod +x devops-scripts/curl.sh
           ./devops-scripts/curl.sh
+        env:
+          GITHUBTOKENCURL: ${{ secrets.GITHUBTOKENCURL }}
           
 
