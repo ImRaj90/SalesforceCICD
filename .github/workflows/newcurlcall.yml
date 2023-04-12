@@ -3,8 +3,8 @@ name: 'newcurlcall'
 on:
   workflow_dispatch:
     inputs:
-      manual_commit_id:
-        description: enter commit id
+      environments:
+        description: enter environments with comma separated values
         required: true
         type: string
         default: test
@@ -17,7 +17,13 @@ jobs:
           fetch-depth: 0
 
       - name: curl back
-        run: |         
+        run: |
+          variable=${{ inputs.environments }} 
+          for i in ${variable//,/ }
+          do
+              # call your procedure/other scripts here below
+              echo "$i"
+          done
           curl -L \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer $GITHUBTOKENCURL"\
