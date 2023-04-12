@@ -29,7 +29,7 @@ jobs:
                 -H "Authorization: Bearer $GITHUBTOKENCURL"\
                 -H "X-GitHub-Api-Version: 2022-11-28" \
                 https://api.github.com/repos/ImRaj90/SalesforceCICD/actions/workflows/15845872/dispatches \
-                 -d '{"ref":"main", "inputs": { "manual_commit_id":"Command Line User", "UAT_SANDBOX":"true","DEV_SANDBOX":"true","Name":"cschleiden","environment":"$i" }}'
+                 -d '{"ref":"main", "inputs": { "manual_commit_id":"Command Line User", "UAT_SANDBOX":"true","DEV_SANDBOX":"true","Name":"cschleiden","environment":$i }}'
 
           done    
         env:
