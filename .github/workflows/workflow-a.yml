@@ -7,5 +7,5 @@ jobs:
   call-workflow:
     uses: ./.github/workflows/workflow-B.yml
     with:
-      config-path: .github/labeler.yml
+      config-path: testing
       token: ${{ vars.VARIABLETEST }}
