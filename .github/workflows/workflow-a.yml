@@ -8,5 +8,4 @@ jobs:
     uses: ./.github/workflows/workflow-B.yml
     with:
       config-path: .github/labeler.yml
-    secrets:
       token: ${{ vars.VARIABLETEST }}
