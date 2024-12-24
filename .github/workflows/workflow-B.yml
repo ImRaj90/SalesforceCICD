@@ -1,4 +1,4 @@
-name: Reusable workflow example
+name: workflow 2 example
 
 on:
   workflow_call:
@@ -11,13 +11,13 @@ on:
         type: string
 
 jobs:
-  triage:
+  secondworflow:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
       with:
           fetch-depth: 0    
-    - name: getting variables
+    - name: getting first workflow variables
       run: |
         echo ${{ inputs.config-path }}
         echo ${{ vars.VARIABLETEST }}
