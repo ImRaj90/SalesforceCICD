@@ -6,15 +6,17 @@ on:
       config-path:
         required: true
         type: string
-    secrets:
       token:
         required: true
+        type: string
 
 jobs:
   triage:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/labeler@v4
-      with:
-        repo-token: ${{ secrets.token }}
-        configuration-path: ${{ inputs.config-path }}
+    - name: getting variables
+      run: |
+        echo ${{ inputs.config-path }}
+        echo ${{ vars.VARIABLETEST }}
+
+
